@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="hId" />
+    </Key>
+    <Property Name="hId" Type="Int32" Nullable="false" />
+    <Property Name="hName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="rating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="parking" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="services" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="emergency" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="medicalData">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="allergies" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="bloodGroup" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="specialCondition" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="HASModel.UsermedicalData" FromRole="medicalData" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="medicalId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="eContact" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="aContact" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="medicalData" Relationship="HASModel.UsermedicalData" FromRole="User" ToRole="medicalData" />
+  </EntityType>
+  <EntityContainer Name="HASEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Hospitals" EntityType="Self.Hospital" />
+    <EntitySet Name="medicalDatas" EntityType="Self.medicalData" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="UsermedicalData" Association="HASModel.UsermedicalData">
+      <End Role="User" EntitySet="Users" />
+      <End Role="medicalData" EntitySet="medicalDatas" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="UsermedicalData">
+    <End Type="HASModel.User" Role="User" Multiplicity="1" />
+    <End Type="HASModel.medicalData" Role="medicalData" Multiplicity="1" />
+  </Association>
+</Schema>
