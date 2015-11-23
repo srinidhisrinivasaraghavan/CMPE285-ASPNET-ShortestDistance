@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HASModelStoreContainer" CdmEntityContainer="HASEntities">
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="HASModel.Hospital">
+        <MappingFragment StoreEntitySet="Hospital">
+          <ScalarProperty Name="hId" ColumnName="hId" />
+          <ScalarProperty Name="hName" ColumnName="hName" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="parking" ColumnName="parking" />
+          <ScalarProperty Name="services" ColumnName="services" />
+          <ScalarProperty Name="emergency" ColumnName="emergency" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="medicalDatas">
+      <EntityTypeMapping TypeName="HASModel.medicalData">
+        <MappingFragment StoreEntitySet="medicalData">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="allergies" ColumnName="allergies" />
+          <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
+          <ScalarProperty Name="specialCondition" ColumnName="specialCondition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="HASModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="medicalId" ColumnName="medicalId" />
+          <ScalarProperty Name="eContact" ColumnName="eContact" />
+          <ScalarProperty Name="aContact" ColumnName="aContact" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
